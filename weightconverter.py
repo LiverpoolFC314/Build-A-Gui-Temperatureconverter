@@ -1,0 +1,15 @@
+from tkinter import* 
+import weightconverter
+guiscreen=Tk()
+guiscreen.title("Weightconverter")
+guiscreen.geometry("600x600")
+guiscreen.config(background="gray57")
+title = Label(guiscreen,text="Grams to kg converter",fg="gray6",bg="gray57",font=("Arial",45,"italic"))
+title.place(x=300,y=100)
+title2 = Label(guiscreen,text="Enter Weight in grams",fg="gray6",bg="gray88",font=("Arial",45,"italic"))
+Weightconverter = Entry()
+Weightconverter.place(x=600,y=100)
+title2.place(x=300,y=250)
+convert=Button(guiscreen,text="Convert")
+convert.place(x=300,y=350)
+guiscreen.mainloop()
