@@ -1,10 +1,23 @@
 from tkinter import*
-import rockpaperscissors
+import random
 guiscreen=Tk()
 guiscreen.config(background="gray57")
 guiscreen.geometry("800x800")
 guiscreen.title("Rock Paper Scissors")
 title=Label(text="Rock Paper Scissors",fg="gray2",bg="gray57",font=("Arial",25,"italic"))
+player_score=0
+computer_score=0
+options=["Rock","Paper","Scissors"]
+def game(user):
+    user_options=user
+    computer_options= random.choice(options)
+    title5.config(text=f"You Selected:{user_options}")
+    title6.config(text=f"Computer Selected:{computer_options}")
+    if user_options ==computer_options:
+        title2.config(text=f"It a Draw Congrats to both sides!")
+    elif user_options=="Rock" and computer_options=="Paper":
+        title2.config(text=f"Computer Won!")
+        computer_score+=1
 title.place(x=300,y=50)
 title2=Label(text="Press Button to start",fg="gray2",bg="gray57",font=("Arial",25,"italic"))
 title2.place(x=300,y=100)
@@ -18,4 +31,13 @@ B3=Button(guiscreen,text="Scissors")
 B1.place(x=400,y=200)
 B2.place(x=500,y=200)
 B3.place(x=600,y=200)
+title5=Label(text="You Selected",fg="gray2",bg="gray57",font=("Arial",25,"italic"))
+title5.place(x=150,y=400)
+title6=Label(text="Computer Selected",fg="gray2",bg="gray57",font=("Arial",25,"italic"))
+title6.place(x=150,y=500)
+title7=Label(text="Player Score",fg="gray2",bg="gray57",font=("Arial",25,"italic"))
+title7.place(x=550,y=400)
+title8=Label(text="Computer Score",fg="gray2",bg="gray57",font=("Arial",25,"italic"))
+title8.place(x=550,y=500)    
 guiscreen.mainloop()
+
