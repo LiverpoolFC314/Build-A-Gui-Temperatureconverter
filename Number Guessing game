@@ -1,0 +1,45 @@
+from tkinter import*
+import random 
+from tkinter import messagebox
+
+guiscreen=Tk()
+guiscreen.title("Number Guessing Game")
+guiscreen.geometry("400x430")
+guiscreen.config(background="mint cream")
+c=random.randint(1,10)
+def  greet():
+    name=Numberguessinggame.get()
+    messagebox.showinfo("Hi",f"Hi {name},Guess a number between 1 and 10")
+def check_number():
+    global c
+    num=int(Entrybox.get())
+    name=Numberguessinggame.get()
+    if c== num:
+        messagebox.showinfo("Hi",f"Hi {name},You guessed the correct number!")
+    elif c <num:
+     num=int(Entrybox.get())
+     messagebox.showinfo("Hi",f"Unforntuley{name},your number is not equal so you number is too big so you lose")
+    elif c>num:
+       messagebox.showinfo("Hi",f"Unfornutly {name}, your number is too small so you lose")
+
+def reset():
+   global c 
+   c=random.randint(1,10)
+
+title1=Label(text="Welcome to our game!",bg="mint cream",fg="gray2",font=("Arial",25,"italic"))
+title1.place(x=400,y=100)
+title2=Label(text="What's Your Name?",bg="mint cream",fg="gray2",font=("Arial",25,"italic"))
+title2.place(x=150,y=250)
+title3=Label(text="Have a guess",bg="mint cream",fg="gray2",font=("Arial",25,"italic"))
+title3.place(x=150,y=350)
+Numberguessinggame = Entry()
+Numberguessinggame.place(x=150,y=300)
+Entrybox=Entry()
+Entrybox.place(x=150,y=400)
+B1=Button(guiscreen,text="Ok",command=greet)
+B1.place(x=300,y=300)
+B2=Button(guiscreen,text="Guess",command=check_number)
+B2.place(x=300,y=400)
+B3=Button(guiscreen,text="Reset",command=reset)
+B3.place(x=150,y=430)
+guiscreen.mainloop()
