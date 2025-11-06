@@ -1,0 +1,21 @@
+from tkinter import*
+import random
+from time import strftime
+guiscreen=Tk()
+guiscreen.geometry("550x250")
+guiscreen.config(background="gray57")
+guiscreen.title("Digital Clock")
+def update_time():
+    string=strftime("%H:%M:%S: %p")
+    string2=strftime("%d/%m/%Y")
+    title1.config(text=string)
+    title1.after(1000,update_time)
+    title2.config(text=string2)
+    title2.after(1000,update_time)
+title1=Label(guiscreen,text="sample",bg="gray57",fg="green2",font=("Arial",70,"italic"))
+title1.pack(anchor="center")
+title2=Label(guiscreen,text="sample",bg="gray57",fg="green2",font=("Arial",70,"italic"))
+title2.pack(anchor="center")
+update_time()
+
+guiscreen.mainloop()
