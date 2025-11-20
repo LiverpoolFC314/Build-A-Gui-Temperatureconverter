@@ -19,22 +19,31 @@ title2.place(x=50,y=200)
 title3=Label(guiscreen,text="Enter Quantity",bg="Mint Cream",font=("Arial",25,"italic"))
 title3.place(x=50,y=300)
 quatities=[1,2,3,4,5,6,7,8,9,10]
+size=["XS","S","M","L","XL"]
 type1=IntVar()
+type2=StringVar()
 Orderpizza=ttk.Combobox(guiscreen,textvariable=type1,values=type1)
 Orderpizza["values"]=quatities
 Orderpizza.place(x=600,y=300)
+pizzasize=ttk.Combobox(guiscreen,textvariable=type2,values=type2)
+pizzasize.place(x=150,y=400)
+pizzasize["values"]=size
 title4=Label(guiscreen,text="Size",bg="Mint Cream",font=("Arial",25,"italic"))
 title4.place(x=50,y=400)
 def place_order():
     order=type.get()
     quantity=type1.get()
-    messagebox.showinfo("Order Succeded",f"Hi you ordered {order} {quantity} Succesfully")
+    size=type2.get()
+    messagebox.showinfo("Order Succeded",f"Hi you ordered {quantity}  {order} pizzas  in size {size} Succesfully")
 
 title3.place(x=50,y=300)
 B1=Button(text="Order",command=place_order)
 B1.place(x=50,y=600)
 
 guiscreen.mainloop()                                                   
+
+
+                                                                                                                                                                           
 
 
                                                                                                                                   
