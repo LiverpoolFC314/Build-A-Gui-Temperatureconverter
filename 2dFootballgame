@@ -1,0 +1,63 @@
+from tkinter import*
+import random
+guiscreen=Tk()
+guiscreen.geometry("1200x1200")
+guiscreen.config(background="Gray1")
+guiscreen.title("Ping Pong Football")
+canvas=Canvas(guiscreen,width=1200,height=1200,bg="black")
+canvas.pack()
+P1=canvas.create_rectangle(20,150,40,250,fill="Red")
+P2=canvas.create_rectangle(1100,150,1120,250,fill="Blue")
+ball_radius=10
+ball_start_x=600
+ball_start_y=600
+ball=canvas.create_oval(ball_start_x-ball_radius,ball_start_y-ball_radius,ball_start_x+ball_radius,ball_start_y+ball_radius,fill="White")
+ball_x=random.choice([-3,3])
+ball_y = random.choice([-3,3])
+P1_speed=0
+P2_speed=0
+def paddle1_up(evt=None):
+    global P1_speed
+    P1_speed= -5
+def paddle1_down(evt=None):
+    global P1_speed
+    P1_speed= 5
+def paddle2_up(evt=None):
+    global P2_speed
+    P2_speed=-5
+def paddle2_down(evt=None):
+    global P2_speed
+    P2_speed= 5
+guiscreen.bind("w",paddle1_up)
+guiscreen.bind("s",paddle1_down)
+guiscreen.bind("<Up>",paddle2_up)
+guiscreen.bind("<Down>",paddle2_down)
+def paddle1_stop(evt=None):
+    global P1_speed
+    P1_speed=0
+def paddle2_stop(evt=None):
+    global P2_speed 
+    P2_speed=0 
+guiscreen.bind("<KeyRelease-w>",paddle1_stop) 
+guiscreen.bind("<KeyRelease-s>",paddle1_stop) 
+guiscreen.bind("<KeyRelease-Up>",paddle2_stop)
+guiscreen.bind("<KeyRelease-Down>",paddle2_stop)
+def game_loop():
+    global ball_x,ball_y
+    p1_pos=canvas.coords(P1)
+    p2_pos=canvas.coords(P2)
+    if p1_pos[1]+P1_speed>=0 and p1_pos[3]+P1_speed<=1100:
+        canvas.move(P1,0,P1_speed)
+    if p2_pos[1]+P2_speed>=0 and p2_pos[3]+P2_speed<=1100:
+        canvas.move(P2,0,P2_speed)
+    canvas.move(ball,ball_x,ball_y)
+    ball_pos=canvas.coords(ball)#
+    if ball_pos[1] <=0 or ball_pos[3] >=1200:
+        ball_y= -ball_y
+    if ball_pos[0] <=0 or ball_pos[2] >=1200:
+        ball_x=-ball_x
+    guiscreen.after(20,game_loop)    
+game_loop()
+
+
+guiscreen.mainloop()
