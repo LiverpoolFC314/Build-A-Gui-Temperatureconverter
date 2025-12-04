@@ -1,7 +1,7 @@
 from tkinter import*
 import random
 guiscreen=Tk()
-guiscreen.geometry("1200x1200")
+guiscreen.geometry("1200x800")
 guiscreen.config(background="Gray1")
 guiscreen.title("Ping Pong Football")
 canvas=Canvas(guiscreen,width=1200,height=1200,bg="black")
@@ -52,15 +52,18 @@ def game_loop():
         canvas.move(P2,0,P2_speed)
     canvas.move(ball,ball_x,ball_y)
     ball_pos=canvas.coords(ball)#
-    if ball_pos[1] <=0 or ball_pos[3] >=1200:
+    if ball_pos[1] <=0 or ball_pos[3] >=800:
         ball_y= -ball_y
-    if ball_pos[0] <=0 or ball_pos[2] >=1200:
-        ball_x=-ball_x 
-    if (ball_pos[0]<=p1_pos[2] and ball_pos[0]>=p1_pos[0])and(ball_pos[3]>=p1_pos[1] and ball_pos[1] <=p1_pos[3]):
+    #if ball_pos[0] <=0 or ball_pos[2] >=1200:
+        #ball_x=-ball_x 
+    if (ball_pos[0]<=p1_pos[2] and ball_pos[2]>=p1_pos[0])and(ball_pos[3]>=p1_pos[1] and ball_pos[1] <=p1_pos[3]):
         ball_x=abs(ball_x)
-    if (ball_pos[2]<=p2_pos[0] and ball_pos[2]>=p2_pos[2])and(ball_pos[3]>=p2_pos[1] and ball_pos[1] <=p2_pos[3]):
+    if (ball_pos[2]>=p2_pos[0] and ball_pos[0]<=p2_pos[2])and(ball_pos[3]>=p2_pos[1] and ball_pos[1] <=p2_pos[3]):
         ball_x=-abs(ball_x)
-        
+    if ball_pos[0] <=0 or ball_pos[2]>=1200:
+     canvas.coords(ball,600-ball_radius,600-ball_radius,600+ball_radius,600+ball_radius) 
+     ball_x=random.choice([-3,3]) 
+     ball_y=random.choice([-3,3])                          
     guiscreen.after(20,game_loop)    
 game_loop()
 
